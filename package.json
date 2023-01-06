@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/coatue-oss/react2angular.git"
+    "url": "git+ssh://git@github.com:alissaVrk/react2angular.git"
   },
   "keywords": [
     "react",
@@ -32,9 +32,9 @@
   "author": "Boris Cherny <boris@performancejs.com>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/coatue-oss/react2angular/issues"
+    "url": "https://github.com/alissaVrk/react2angular/issues"
   },
-  "homepage": "https://github.com/coatue-oss/react2angular#readme",
+  "homepage": "https://github.com/alissaVrk/react2angular#readme",
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
