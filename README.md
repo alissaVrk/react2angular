@@ -1,8 +1,10 @@
 <img alt="React to Angular: The easiest way to use React components in Angular 1" src="https://raw.githubusercontent.com/coatue-oss/react2angular/master/logo.png" width="400px" />
 
-# react2angular [![Build Status](https://img.shields.io/circleci/project/coatue-oss/react2angular.svg?branch=master&style=flat-square)](https://circleci.com/gh/coatue-oss/react2angular) [![NPM](https://img.shields.io/npm/v/react2angular.svg?style=flat-square)](https://www.npmjs.com/package/react2angular) [![Apache2](https://img.shields.io/npm/l/react2angular.svg?style=flat-square)](https://opensource.org/licenses/Apache2)
+# react2angular [![NPM](https://img.shields.io/npm/v/react18-react2angular.svg?style=flat-square)](https://www.npmjs.com/package/react18-react2angular) [![Apache2](https://img.shields.io/npm/l/react2angular.svg?style=flat-square)](https://opensource.org/licenses/Apache2)
 
 > The easiest way to embed React components in Angular 1 apps! (opposite of [angular2react](https://github.com/coatue-oss/angular2react))
+
+> <b>this version can be used with React 18 and probably up</b>
 
 ## Installation
 
@@ -19,14 +21,16 @@ npm install react2angular react react-dom prop-types --save
 ### 1. Create a React component
 
 ```js
-import { Component } from 'react'
+import { Component } from "react";
 
 class MyComponent extends Component {
   render() {
-    return <div>
-      <p>FooBar: {this.props.fooBar}</p>
-      <p>Baz: {this.props.baz}</p>
-    </div>
+    return (
+      <div>
+        <p>FooBar: {this.props.fooBar}</p>
+        <p>Baz: {this.props.baz}</p>
+      </div>
+    );
   }
 }
 ```
@@ -34,11 +38,11 @@ class MyComponent extends Component {
 ### 2. Expose it to Angular
 
 ```js
-import { react2angular } from 'react2angular'
+import { react2angular } from "react2angular";
 
 angular
-  .module('myModule', [])
-  .component('myComponent', react2angular(MyComponent, ['fooBar', 'baz']))
+  .module("myModule", [])
+  .component("myComponent", react2angular(MyComponent, ["fooBar", "baz"]));
 ```
 
 Note: If you defined [`propTypes`](https://facebook.github.io/react/docs/typechecking-with-proptypes.html) on your component, they will be used to compute component's bindings, and you can omit the 2nd argument:
@@ -53,10 +57,7 @@ If `propTypes` are defined and you passed in a 2nd argument, the argument will o
 ### 3. Use it in your Angular 1 code
 
 ```html
-<my-component
-  foo-bar="3"
-  baz="'baz'"
-></my-component>
+<my-component foo-bar="3" baz="'baz'"></my-component>
 ```
 
 Note: All React props are converted to AngularJS one-way bindings. If you are passing functions into your React component, they need to be passed as a function ref, rather than as an invokable expression. Keeping an existing AngularJS-style expression will result in infinite loops as the function re-evaluates on each digest loop.
@@ -66,30 +67,32 @@ Note: All React props are converted to AngularJS one-way bindings. If you are pa
 It's easy to pass services/constants/etc. to your React component: just pass them in as the 3rd argument, and they will be available in your component's Props. For example:
 
 ```js
-import { Component } from 'react'
-import { react2angular } from 'react2angular'
+import { Component } from "react";
+import { react2angular } from "react2angular";
 
 class MyComponent extends Component {
   state = {
-    data: ''
-  }
+    data: "",
+  };
   componentDidMount() {
-    this.props.$http.get('/path').then(res =>
-      this.setState({ data: res.data })
-    )
+    this.props.$http
+      .get("/path")
+      .then((res) => this.setState({ data: res.data }));
   }
   render() {
-    return <div>
-      { this.props.FOO }
-      { this.state.data }
-    </div>
+    return (
+      <div>
+        {this.props.FOO}
+        {this.state.data}
+      </div>
+    );
   }
 }
 
 angular
-  .module('myModule', [])
-  .constant('FOO', 'FOO!')
-  .component('myComponent', react2angular(MyComponent, [], ['$http', 'FOO']))
+  .module("myModule", [])
+  .constant("FOO", "FOO!")
+  .component("myComponent", react2angular(MyComponent, [], ["$http", "FOO"]));
 ```
 
 Note: If you have an injection that matches the name of a prop, then the value will be resolved with the injection, not the prop.
