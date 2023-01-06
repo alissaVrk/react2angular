@@ -1,6 +1,6 @@
 {
   "name": "react18-react2angular",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "The easiest way to embed React components in Angular 1 apps! react 18 compatible",
   "main": "index.js",
   "main:esnext": "index.es2015.js",
