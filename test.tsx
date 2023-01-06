@@ -170,7 +170,7 @@ const TestAngularSix = react2angular(TestSix, ['foo'], ['$http', '$element', 'te
 const TestAngularSeven = react2angular(TestSeven, null, ['foo'])
 const TestAngularEight = react2angular(TestEight, ['values', 'onComponentWillUnmount', 'onRender', 'onChange'])
 
-//render + mount isn't sync, this is an alternative to act()
+// render + mount isn't sync, this is an alternative to act()
 const delay = () => new Promise(resolve => setTimeout(resolve, 10))
 
 module('test', ['bcherny/ngimport'])
